@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>example of c3</title>
+  <link rel="stylesheet" href="build/build.css">
+</head>
+<body>
+  <div id="chart"></div>
+  <script src="build/build.js"></script>
+  <script>
+    var data = [
+    {
+        "date": "2014-06-08",
+        "active_count": "195233",
+        "time_total": "2275216320",
+        "per_time": "11654"
+    },
+    {
+        "date": "2014-05-25",
+        "active_count": "202164",
+        "time_total": "2547132610",
+        "per_time": "12599"
+    },
+    {
+        "date": "2014-05-18",
+        "active_count": "201209",
+        "time_total": "2424852810",
+        "per_time": "12051"
+    },
+    {
+        "date": "2014-05-11",
+        "active_count": "201544",
+        "time_total": "2480940010",
+        "per_time": "12310"
+    },
+    {
+        "date": "2014-05-04",
+        "active_count": "203039",
+        "time_total": "2287824420",
+        "per_time": "11268"
+    },
+    {
+        "date": "2014-04-27",
+        "active_count": "197534",
+        "time_total": "2280613330",
+        "per_time": "11545"
+    },
+    {
+        "date": "2014-04-20",
+        "active_count": "189166",
+        "time_total": "2070430450",
+        "per_time": "10945"
+    }
+]
+
+var map = {
+  'active_count': '激活数',
+  'per_time': '时间/激活'
+}
+
+function convert (data, fields) {
+  var res = {};
+  res.x = 'date';
+  var columns = res.columns = [];
+  columns.push(['date']);
+  fields.forEach(function(f) {
+    columns.push([map[f]]);
+  })
+  data.forEach(function(o) {
+    columns[0].push(o['date']);
+    fields.forEach(function(f, i) {
+      columns[i + 1].push(o[f]);
+    })
+  })
+  return res;
+}
+
+var d = convert(data, ['active_count', 'per_time']);
+
+    var c3 = require('c3');
+    var chart = c3.generate({
+    data: d,
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%Y-%m-%d'
+            }
+        }
+    }
+});
+  </script>
+</body>
+</html>

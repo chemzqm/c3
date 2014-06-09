@@ -1,0 +1,20 @@
+{
+  "name": "c3",
+  "repo": "chemzqm/c3",
+  "description": "A D3-based reusable chart library",
+  "version": "0.2.3",
+  "keywords": [],
+  "dependencies": {
+    "mbostock/d3": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "c3.js",
+  "scripts": [
+    "c3.js"
+  ],
+  "styles": [
+    "c3.css"
+  ]
+}
+
